@@ -14,7 +14,7 @@ complaint = sqlalchemy.Table(
     sqlalchemy.Column(
         "created_at",
         sqlalchemy.DateTime,
-        server_default=sqlalchemy.func.utcnow(),
+        server_default=sqlalchemy.func.now(),
     ),
     sqlalchemy.Column(
         "status",

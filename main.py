@@ -1,7 +1,8 @@
+import uvicorn
 from fastapi import FastAPI
-from resources.routes import api_router
-from db import database
 
+from db import database
+from resources.routes import api_router
 
 app = FastAPI()
 app.include_router(api_router)
@@ -15,3 +16,7 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

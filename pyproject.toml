@@ -17,6 +17,7 @@ psycopg2-binary = "^2.9.5"
 alembic = "^1.9.1"
 python-decouple = "^3.7"
 PyJWT = "^2.6.0"
+passlib = "^1.7.4"
 
 
 [tool.poetry.group.dev.dependencies]

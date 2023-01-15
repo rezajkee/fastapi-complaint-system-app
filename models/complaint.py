@@ -23,6 +23,6 @@ complaint = sqlalchemy.Table(
         server_default=State.pending.name,
     ),
     sqlalchemy.Column(
-        "Complainer_id", sqlalchemy.ForeignKey("users.id"), nullable=False
+        "complainer_id", sqlalchemy.ForeignKey("users.id"), nullable=False
     ),
 )

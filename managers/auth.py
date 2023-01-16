@@ -8,6 +8,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from starlette.requests import Request
 
 from db import database
+from models.enums import RoleType
 from models.user import user
 
 
@@ -43,3 +44,21 @@ class CustomHTTPBearer(HTTPBearer):
             raise HTTPException(401, "Token is expired")
         except jwt.InvalidTokenError:
             raise HTTPException(401, "Invalid token")
+
+
+oauth2_scheme = CustomHTTPBearer()
+
+
+def is_complainer(request: Request):
+    if request.state.user["role"] != RoleType.complainer:
+        raise HTTPException(403, "Forbidden")
+
+
+def is_approver(request: Request):
+    if request.state.user["role"] != RoleType.approver:
+        raise HTTPException(403, "Forbidden")
+
+
+def is_admin(request: Request):
+    if request.state.user["role"] != RoleType.admin:
+        raise HTTPException(403, "Forbidden")
